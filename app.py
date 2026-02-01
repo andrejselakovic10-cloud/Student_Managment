@@ -13,3 +13,9 @@ while True:
             print("-No Students-")
         else:
             print(formattedStudent)
+
+    elif action == "3":
+        property = input("Why property do you want to search by: ")
+        value = input("Why value do you want to get: ")
+        filteredStudents = find_by_property(studentLst)
+        print(filteredStudents)

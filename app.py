@@ -8,14 +8,10 @@ while True:
     if action == "1":
         addStudent(studentLst)
     elif action == "2":
-        formattedStudent = formattingStudent(studentLst)
-        if(formattedStudent == ""):
-            print("-No Students-")
-        else:
-            print(formattedStudent)
-
+       printStudents(studentLst)
     elif action == "3":
         property = input("Why property do you want to search by: ")
         value = input("Why value do you want to get: ")
-        filteredStudents = find_by_property(studentLst)
-        print(filteredStudents)
+        filteredStudents = find_by_property(studentLst,property,value)
+        printStudents(filteredStudents)
+        #Dva studenta kada se unesu i active testiramo onda dobijemo gresku

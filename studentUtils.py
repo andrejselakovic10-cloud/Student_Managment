@@ -29,10 +29,23 @@ def formattingStudent(studentLst):
 def find_by_property(studentLst, property, value):
     if(property not in ["id", "name", "age", "grades", "active"]):
         return "The property doesnt exist"
-    
+    if(property == "id"):
+        value = int(value)
+    if(property == "active"):
+        value = bool(value)
+
     filteredStudents=[]
     for student in studentLst:
+
+        print(student[property])
         if(student[property] == value):
             filteredStudents.append(student)
 
     return filteredStudents
+
+def printStudents(studentLst):
+    formattedStudent = formattingStudent(studentLst)
+    if(formattedStudent == ""):
+        print("-No Students-")
+    else:
+        print(formattedStudent)

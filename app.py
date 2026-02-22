@@ -6,6 +6,7 @@ functions='1️⃣ -Add student\n2️⃣ -Show all students\n3️⃣ -Find stude
 while True:
     action = input(functions)
     if action == "1":
+        #Provera unosa
         addStudent(studentLst)
     elif action == "2":
        printStudents(studentLst)

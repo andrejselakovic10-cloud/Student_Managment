@@ -10,8 +10,24 @@ while True:
     elif action == "2":
        printStudents(studentLst)
     elif action == "3":
-        property = input("Why property do you want to search by: ")
-        value = input("Why value do you want to get: ")
+        property = input("Which property do you want to search by: ")
+        value = input("Which value do you want to get: ")
         filteredStudents = find_by_property(studentLst,property,value)
+        if filteredStudents == None:
+            continue
         printStudents(filteredStudents)
-        #Dva studenta kada se unesu i active testiramo onda dobijemo gresku
+    elif action == "4":
+        studentId = input("Whats the id of the student we want to remove: ")
+        removedStudent = removeStudent(studentLst,studentId)
+        if removedStudent == True:
+            print("Succesfuly removed the student")
+        else:
+            print("Non-existant id")
+    elif action == "8":
+        studentId = input("whats the id of the student u want to add a grade to: ")
+        gradeToAdd = input("What grade are u going to add: ")
+        gradeStudent(studentId,studentLst,gradeToAdd)
+        if(gradeStudent == True):
+            print("grade succesfully addded")
+        if(gradeStudent == False):
+            print("dumbass")

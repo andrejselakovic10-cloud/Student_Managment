@@ -84,3 +84,20 @@ def averageGrade(student):
         sum = sum+grade
 
     return sum / noGrades
+
+def bestGradesOfAll(studentLst):
+    averageGrades = []
+    for student in studentLst:
+        averageGrades.append({
+            "id":student["id"],
+            "avgGrade":averageGrade(student)
+        })
+
+    sortedStudents = sorted(averageGrades, key=lambda x: x["avgGrade"],reverse=True)
+    bestStudents = [
+        find_by_property(studentLst,"id", sortedStudents[0]["id"])[0],
+        find_by_property(studentLst,"id", sortedStudents[1]["id"])[0],
+        find_by_property(studentLst,"id", sortedStudents[2]["id"])[0]
+    ]
+    
+    return formattingStudent(bestStudents)

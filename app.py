@@ -24,9 +24,8 @@ while True:
         else:
             print("Non-existant id")
     elif action == "5":
-        id = input("Whats the id of the student we want to calculate the avrage grade of ")
-        avrgGrade = averageGrade(studentLst, id)
-        print(avrgGrade)
+        bestGrades = bestGradesOfAll(studentLst)
+        print(bestGrades)
     elif action == "8":
         studentId = input("whats the id of the student u want to add a grade to: ")
         gradeToAdd = input("What grade are u going to add: ")

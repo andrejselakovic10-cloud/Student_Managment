@@ -23,11 +23,15 @@ while True:
             print("Succesfuly removed the student")
         else:
             print("Non-existant id")
+    elif action == "5":
+        id = input("Whats the id of the student we want to calculate the avrage grade of ")
+        avrgGrade = averageGrade(studentLst, id)
+        print(avrgGrade)
     elif action == "8":
         studentId = input("whats the id of the student u want to add a grade to: ")
         gradeToAdd = input("What grade are u going to add: ")
-        gradeStudent(studentId,studentLst,gradeToAdd)
-        if(gradeStudent == True):
+        gradeSucess = gradeStudent(studentId,studentLst,gradeToAdd)
+        if(gradeSucess == True):
             print("grade succesfully addded")
-        if(gradeStudent == False):
-            print("dumbass")
+        else:
+            print("There was an error in inplementing the requested grade. ")

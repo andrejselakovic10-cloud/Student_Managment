@@ -10,7 +10,7 @@ def addStudent(studentLst):
         "active": True,
     }
     studentLst.append(student)
-
+# studentlst = array
 def formattingStudent(studentLst):
     formateddStudents = ""
     for student in studentLst:
@@ -25,8 +25,8 @@ def formattingStudent(studentLst):
         formateddStudents = formateddStudents+"\n"
 
     return formateddStudents
-
-def find_by_property(studentLst, property, value):
+# stidentlst - arary
+def find_by_property(studentLst, property, value):  # studentlst - array, property - string, value = str
     if(property not in ["id", "name", "age", "grades", "active"]):
         print("The property doesnt exist")
         return None
@@ -47,14 +47,14 @@ def find_by_property(studentLst, property, value):
             filteredStudents.append(student)
 
     return filteredStudents
-
+# studentlst = array
 def printStudents(studentLst):
     formattedStudent = formattingStudent(studentLst)
     if(formattedStudent == ""):
         print("-No Students-")
     else:
         print(formattedStudent)
-
+# studentlst = array, studentid = str
 def removeStudent(studentLst,studentId):
     for student in studentLst:
         if int(studentId) == student["id"]:
@@ -62,11 +62,25 @@ def removeStudent(studentLst,studentId):
             return True
         
     return False 
-
+# studentid - str,studentlst = array, gradetoadd = str
 def gradeStudent(studentId,studentLst,gradeToAdd):
     for student in studentLst:
-        if(studentId in ["id"]):
-            print("idk vro")
-            student["grades"].append(gradeToAdd)
+        if(int(studentId) == student["id"]):
+            student["grades"].append(int(gradeToAdd))
             return True
     return False 
+#studentLst = array, id = str
+def averageGrade(student):
+    #student = find_by_property(studentLst, "id", id)
+    #if student == None:
+    #    return False
+    #Mi znamo da student nije NONE
+    #student = [{...}]
+    #student = student[0]
+    #student = {..., "grades": []}
+    sum = 0
+    noGrades = len(student["grades"])
+    for grade in student["grades"]:
+        sum = sum+grade
+
+    return sum / noGrades

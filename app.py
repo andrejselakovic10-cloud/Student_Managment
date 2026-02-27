@@ -1,7 +1,7 @@
 from data import studentLst
 from studentUtils import *
 
-functions='1️⃣ -Add student\n2️⃣ -Show all students\n3️⃣ -Find student by property\n4️⃣ -Delete student\n5️⃣ -Show 3 best students by grade\n6️⃣ -Show 3 worst students by grade\n7️⃣ -Show all student that have bigger grade than\n8️⃣ -Add the grade\n9️⃣ -Close the app\n'
+functions='1️⃣ -Add student\n2️⃣ -Show all students\n3️⃣ -Find student by property\n4️⃣ -Delete student\n5️⃣ -Show 3 best students by grade\n6️⃣ -Show 3 worst students by grade\n7️⃣ -Show all student that have bigger grade than n\n8️⃣ -Add the grade\n9️⃣ -Close the app\n'
 
 while True:
     action = input(functions)
@@ -25,8 +25,19 @@ while True:
         else:
             print("Non-existant id")
     elif action == "5":
-        bestGrades = bestGradesOfAll(studentLst)
-        print(bestGrades)
+        sortedStudents = sortStudentsGrade(studentLst)
+        pickedStudents = pickFirstStudents(sortedStudents, 3)
+        if(pickedStudents == None):
+            print("Not enough students in the system!")
+        else:
+            printStudents(pickedStudents)
+    elif action == "6":
+        sortedStudents = sortStudentsGrade(studentLst, False)
+        pickedStudents = pickFirstStudents(sortedStudents, 3)
+        if(pickedStudents == None):
+            print("Not enough students in the system!")
+        else:
+            printStudents(pickedStudents)
     elif action == "8":
         studentId = input("whats the id of the student u want to add a grade to: ")
         gradeToAdd = input("What grade are u going to add: ")

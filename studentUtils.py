@@ -30,6 +30,7 @@ def find_by_property(studentLst, property, value):  # studentlst - array, proper
     if(property not in ["id", "name", "age", "grades", "active"]):
         print("The property doesnt exist")
         return None
+    
     if(property == "id"):
         value = int(value)
     if(property == "active"):
@@ -40,6 +41,7 @@ def find_by_property(studentLst, property, value):  # studentlst - array, proper
         else:
             print("error")
             return None
+        
     filteredStudents=[]
     for student in studentLst:
         print(student[property])
@@ -69,15 +71,9 @@ def gradeStudent(studentId,studentLst,gradeToAdd):
             student["grades"].append(int(gradeToAdd))
             return True
     return False 
-#studentLst = array, id = str
+#studentLst = array
 def averageGrade(student):
-    #student = find_by_property(studentLst, "id", id)
-    #if student == None:
-    #    return False
-    #Mi znamo da student nije NONE
-    #student = [{...}]
-    #student = student[0]
-    #student = {..., "grades": []}
+
     sum = 0
     noGrades = len(student["grades"])
     for grade in student["grades"]:
@@ -85,19 +81,34 @@ def averageGrade(student):
 
     return sum / noGrades
 
-def bestGradesOfAll(studentLst, best = True ):
+#studentLst = string, best = boolean
+def sortStudentsGrade(studentLst, best = True ):
     averageGrades = []
-    for student in studentLst:
+    for student in studentLst:  #Ovde prolazimo kroz sve nase studente (1 milion studenta)( milion operacija)
         averageGrades.append({
             "id": student["id"],
             "avgGrade": averageGrade(student)
         })
 
-    sortedStudents = sorted(averageGrades, key=lambda x: x["avgGrade"],reverse=best)
-    bestStudents = [
-        find_by_property(studentLst,"id", sortedStudents[0]["id"])[0],
-        find_by_property(studentLst,"id", sortedStudents[1]["id"])[0],
-        find_by_property(studentLst,"id", sortedStudents[2]["id"])[0]
-    ]
-    #Kada imamo manje od 3 studenta
-    return formattingStudent(bestStudents)
+    sortedGrades = sorted(averageGrades, key=lambda x: x["avgGrade"],reverse=best)
+
+    sortedStudents = []
+    for gradeObj in sortedGrades: #Ovde prolazimo oet kroz milion studenta (1 mil operacija)
+        sortedStudents.append(find_by_property(studentLst, "id", gradeObj["id"])[0])
+
+    #(2 mil) -> (1 mil)
+
+    return sortedStudents
+
+#studentLst = string, n = int
+def pickFirstStudents(studentLst, n):
+    
+    pickedStudents = []
+
+    if n>len(studentLst) or n==0:
+        return None
+
+    for i in range(n):
+        pickedStudents.append(studentLst[i])
+
+    return pickedStudents

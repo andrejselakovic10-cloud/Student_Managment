@@ -112,3 +112,11 @@ def pickFirstStudents(studentLst, n):
         pickedStudents.append(studentLst[i])
 
     return pickedStudents
+# grade = int
+def validGrade(grade):
+    if grade.isdigit() == False:
+        return False
+    grade = int(grade)
+    if grade > 0 and grade < 6:
+        return True
+    return False #testnwith decimals

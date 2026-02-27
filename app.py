@@ -38,9 +38,16 @@ while True:
             print("Not enough students in the system!")
         else:
             printStudents(pickedStudents)
+    elif action == "7":
+        #Show all student that have bigger grade than n
+        minAvgGrade = input("Minimal average grade to sort by: ")
+
     elif action == "8":
         studentId = input("whats the id of the student u want to add a grade to: ")
         gradeToAdd = input("What grade are u going to add: ")
+        if validGrade(gradeToAdd) == False:
+            print("mrowwwwwwwwwwwwwwwwwwwwwwwwww")
+            continue
         gradeSucess = gradeStudent(studentId,studentLst,gradeToAdd)
         if(gradeSucess == True):
             print("grade succesfully addded")

@@ -1,15 +1,18 @@
 def addStudent(studentLst):
     name = input("Enter the students name: ")
-    age = input("Enter the students age: ")
+    birthYear = input("Enter the students birth year: ")
+    if validBirthYear(birthYear) == False:
+        return False
     id = len(studentLst)+1
     student = {
         "id": id,
         "name" : name,
-        "age" : age,
+        "birthYear" : birthYear,
         "grades": [],
         "active": True,
     }
     studentLst.append(student)
+    return True
 # studentlst = array
 def formattingStudent(studentLst):
     formateddStudents = ""
@@ -17,7 +20,7 @@ def formattingStudent(studentLst):
         if(student["active"]==False):
             formateddStudents = formateddStudents + "-Dropped out- "
 
-        formateddStudents =  formateddStudents + f"Id: {student["id"]}, Name: {student["name"]}, Age: {student["age"]}\n\tGrades: "
+        formateddStudents =  formateddStudents + f"Id: {student["id"]}, Name: {student["name"]}, birth Year: {student["birthYear"]}\n\tGrades: "
 
         for grade in student["grades"]:
             formateddStudents = formateddStudents + f"{grade}, " 
@@ -27,7 +30,7 @@ def formattingStudent(studentLst):
     return formateddStudents
 # stidentlst - arary
 def find_by_property(studentLst, property, value):  # studentlst - array, property - string, value = str
-    if(property not in ["id", "name", "age", "grades", "active"]):
+    if(property not in ["id", "name", "birthYear", "grades", "active"]):
         print("The property doesnt exist")
         return None
     
@@ -81,23 +84,21 @@ def averageGrade(student):
 
     return sum / noGrades
 
-#studentLst = string, best = boolean
+#studentLst = lsit o student, best = boolean
 def sortStudentsGrade(studentLst, best = True ):
     averageGrades = []
     for student in studentLst:  #Ovde prolazimo kroz sve nase studente (1 milion studenta)( milion operacija)
         averageGrades.append({
-            "id": student["id"],
+            "student" : student,
             "avgGrade": averageGrade(student)
         })
 
     sortedGrades = sorted(averageGrades, key=lambda x: x["avgGrade"],reverse=best)
-
     sortedStudents = []
-    for gradeObj in sortedGrades: #Ovde prolazimo oet kroz milion studenta (1 mil operacija)
-        sortedStudents.append(find_by_property(studentLst, "id", gradeObj["id"])[0])
+    for studentGrade in sortedGrades:
+        sortedStudents.append(studentGrade["student"])
 
-    #(2 mil) -> (1 mil)
-
+    
     return sortedStudents
 
 #studentLst = string, n = int
@@ -112,11 +113,28 @@ def pickFirstStudents(studentLst, n):
         pickedStudents.append(studentLst[i])
 
     return pickedStudents
-# grade = int
-def validGrade(grade):
+# grade = str
+def isStrInt():
+    grade = grade.strip()
     if grade.isdigit() == False:
+        return None
+    else:
+        return int(grade)
+def validGrade(grade):
+    grade = isStrInt(grade)
+    if grade == None:
         return False
-    grade = int(grade)
     if grade > 0 and grade < 6:
         return True
     return False #testnwith decimals
+def validBirthYear(birthYear):
+    birthYear = isStrInt(birthYear)
+    if birthYear == None:
+        return False
+    if birthYear > 1900 and birthYear < 2026:
+        return True
+    return False
+def validName():
+    if " " not in Name:
+        return False
+    if 

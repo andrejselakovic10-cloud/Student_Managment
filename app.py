@@ -7,7 +7,10 @@ while True:
     action = input(functions)
     if action == "1":
         #Provera unosa
-        addStudent(studentLst)
+        if addStudent(studentLst) == False:
+            print("error whilst adding the student(invalid inputed data)")
+        else:
+            print("successfully added the student")
     elif action == "2":
        printStudents(studentLst)
     elif action == "3":
@@ -46,10 +49,10 @@ while True:
         studentId = input("whats the id of the student u want to add a grade to: ")
         gradeToAdd = input("What grade are u going to add: ")
         if validGrade(gradeToAdd) == False:
-            print("mrowwwwwwwwwwwwwwwwwwwwwwwwww")
+            print("the number you inputted is invalid")
             continue
         gradeSucess = gradeStudent(studentId,studentLst,gradeToAdd)
         if(gradeSucess == True):
-            print("grade succesfully addded")
+            print("Grade successfully added")
         else:
             print("There was an error in inplementing the requested grade. ")

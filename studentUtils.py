@@ -49,7 +49,6 @@ def find_by_property(studentLst, property, value):  # studentlst - array, proper
         
     filteredStudents=[]
     for student in studentLst:
-        print(student[property])
         if(student[property] == value):
             filteredStudents.append(student)
 
@@ -86,14 +85,18 @@ def averageGrade(student):
 
     return sum / noGrades
 
-#studentLst = lsit o student, best = boolean
-def sortStudentsGrade(studentLst, best = True ):
+def getStudentAvrageGrade(studentLst):
     averageGrades = []
-    for student in studentLst:  #Ovde prolazimo kroz sve nase studente (1 milion studenta)( milion operacija)
+    for student in studentLst: 
         averageGrades.append({
             "student" : student,
             "avgGrade": averageGrade(student)
         })
+    return averageGrades
+
+#studentLst = lsit o student, best = boolean
+def sortStudentsGrade(studentLst, best = True ):
+    averageGrades = getStudentAvrageGrade(studentLst)
 
     sortedGrades = sorted(averageGrades, key=lambda x: x["avgGrade"],reverse=best)
     sortedStudents = []

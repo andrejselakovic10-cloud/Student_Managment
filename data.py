@@ -1,2 +1,2 @@
 
-studentLst = [{'id': 1, 'name': 'asd', 'age': 'asd', 'grades': [10], 'active': True}, {'id': 2, 'name': 'qwe', 'age': 'qwe', 'grades': [100], 'active': True}, {'id': 3, 'name': 'zxc', 'age': 'zxc', 'grades': [1], 'active': True}]
+studentLst = []

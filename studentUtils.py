@@ -1,5 +1,7 @@
 def addStudent(studentLst):
     name = input("Enter the students name: ")
+    if validName(name) == False:
+        return False
     birthYear = input("Enter the students birth year: ")
     if validBirthYear(birthYear) == False:
         return False
@@ -114,19 +116,22 @@ def pickFirstStudents(studentLst, n):
 
     return pickedStudents
 # grade = str
-def isStrInt():
-    grade = grade.strip()
-    if grade.isdigit() == False:
+def isStrInt(str):
+    str = str.strip()
+    if str.isdigit() == False:
         return None
     else:
-        return int(grade)
+        return int(str)
 def validGrade(grade):
     grade = isStrInt(grade)
     if grade == None:
         return False
+    if grade != round(grade):        #decomals
+        return False
     if grade > 0 and grade < 6:
         return True
-    return False #testnwith decimals
+    
+    return False 
 def validBirthYear(birthYear):
     birthYear = isStrInt(birthYear)
     if birthYear == None:
@@ -134,7 +139,13 @@ def validBirthYear(birthYear):
     if birthYear > 1900 and birthYear < 2026:
         return True
     return False
-def validName():
-    if " " not in Name:
+# name = str
+def validName(name):
+    name = name.strip()
+    spaceCount = name.count(" ")   
+    if spaceCount != 2 and spaceCount!= 1:                               # get rid of ones w special characters wihout removing space
         return False
-    if 
+    for character in name:
+        if character.isdigit():                 # numbress
+            return False
+    return True

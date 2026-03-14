@@ -8,9 +8,9 @@ while True:
     if action == "1":
         #Provera unosa
         if addStudent(studentLst) == False:
-            print("error whilst adding the student(invalid inputed data)")
+            print("Error whilst adding the student(invalid inputed data)")
         else:
-            print("successfully added the student")
+            print("Successfully added the student")
     elif action == "2":
        printStudents(studentLst)
     elif action == "3":
@@ -43,8 +43,20 @@ while True:
             printStudents(pickedStudents)
     elif action == "7":
         #Show all student that have bigger grade than n
+        averageGrades = []
+        biggergradethan = []
+        for student in studentLst: 
+            averageGrades.append({
+                "student" : student,
+                "avgGrade": averageGrade(student)
+                })
         minAvgGrade = input("Minimal average grade to sort by: ")
-
+        student = averageGrade(student)
+        for student in averageGrades:
+            if student > minAvgGrade or student == minAvgGrade:
+                biggergradethan.append(student)
+        print(f"student with a grade higher than that: {biggergradethan}")
+        
     elif action == "8":
         studentId = input("whats the id of the student u want to add a grade to: ")
         gradeToAdd = input("What grade are u going to add: ")
